@@ -1,14 +1,14 @@
-
+import { Login } from "./pages/Login";
 
 function App() {
-
   return (
     <>
-      <div className='text-red-500 text-2xl ' >
-	      vite and tailwind
-	    </div>
+      {" "}
+      <div className="">
+        <Login />
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
