@@ -6,7 +6,7 @@ export const Home = () => {
     <div>
       <Container>
         <Nav />
-        {/* <Dashboard /> */}
+        <Dashboard />
       </Container>
     </div>
   );

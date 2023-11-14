@@ -5,12 +5,12 @@ const Nav = () => {
     <div className="">
       <div className="py-3 flex items-center justify-between">
         <Search />
-        <div className="flex items-center gap-4">
+        <div className="flex items-center sm:gap-4">
           <div className="w-10 h-10 rounded-full border border-[#D4D4D4] overflow-hidden">
             <img src={img} alt="" />
           </div>
-          <div className="flex items-center px-2 py-1 cursor-pointer transition-colors rounded-md gap-1 hover:bg-black/10">
-            <p className="font-comfortaa">Aditya</p>
+          <div className="flex items-center sm:px-2 py-1 cursor-pointer transition-colors rounded-md gap-1 hover:bg-black/10">
+            <p className=" hidden sm:block font-comfortaa">Aditya</p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20px"
