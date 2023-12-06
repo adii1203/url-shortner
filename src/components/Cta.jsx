@@ -2,7 +2,7 @@ import { useState } from "react";
 import Input from "./Input";
 
 const Cta = () => {
-  const [pasteFromClipboard, setPasteFromClipboard] = useState(false);
+  const [pasteFromClipboard, setPasteFromClipboard] = useState(true);
 
   const handleToggle = () => {
     setPasteFromClipboard(!pasteFromClipboard);
@@ -26,10 +26,17 @@ const Cta = () => {
           streamlines your online experience.
         </p>
       </div>
-      <Input />
+      <Input pasteFromClipboard={pasteFromClipboard} />
       <div className="flex justify-center gap-2 items-center mt-4">
-        <div className="w-10 relative h-5 flex items-center rounded-full bg-[#181E29] outline outline-[#353C4A] outline-[2px] cursor-pointer">
-          <div className="bg-[#144EE3] absolute left-1 translate-x-full transition-transform w-4 h-4 rounded-full shadow-md"></div>
+        <div
+          onClick={handleToggle}
+          className="w-10 relative h-5 flex items-center rounded-full bg-[#181E29] outline outline-[#353C4A] outline-[2px] cursor-pointer">
+          <div
+            className={
+              pasteFromClipboard
+                ? `bg-[#144EE3] absolute left-1 translate-x-full transition-transform w-4 h-4 rounded-full shadow-md`
+                : `bg-white absolute left-1 transition-transform w-4 h-4 rounded-full shadow-md`
+            }></div>
         </div>
         <p className="text-[#C9CED6] text-sm font-500">
           Auto Paste from Clipboard
