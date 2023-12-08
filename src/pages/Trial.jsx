@@ -1,7 +1,5 @@
 import Container from "../components/Container";
 import Cta from "../components/Cta";
-import Header from "../components/Header";
-import AllLinks from "../components/AllLinks";
 const Trial = () => {
   return (
     <div className="overflow-hidden bg-gradient w-full relative min-h-screen bg-[#F8F9FA]">
