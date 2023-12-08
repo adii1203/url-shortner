@@ -4,12 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
-/* .p {
-  background: #121fcf;
-  font-size: 10rem;
-  background: -webkit-linear-gradient(to right, #121fcf 0%, #cf1512 100%);
-  background: -moz-linear-gradient(to right, #121fcf 0%, #cf1512 100%);
-  background: linear-gradient(to right, #121fcf 0%, #cf1512 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-} */
+@layer utilities {
+  .animation-delay-2000 {
+    animation-delay: 2000ms;
+  }
+  .animation-delay-4000 {
+    animation-delay: 4000ms;
+  }
+}
+
+.bg-gradient {
+  background-image: radial-gradient(#5d5a5a 0.6px, #f0f0f0 0.6px);
+  background-size: 10px 10px;
+}

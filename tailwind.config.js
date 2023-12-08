@@ -3,6 +3,22 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      animation: {
+        blob: "blob 7s infinite",
+        blob_2: "blob_2 7s infinite",
+      },
+      keyframes: {
+        blob: {
+          "0%, 100%": { transform: "translate(0px, 0px) scale(1)" },
+          "33%": { transform: "translate(40px, -60px) scale(1.1)" },
+          "66%": { transform: "translate(-20px, 100px) scale(0.9)" },
+        },
+        blob_2: {
+          "0%, 100%": { transform: "translate(0px, 0px) scale(1)" },
+          "33%": { transform: "translate(-30px, 50px) scale(1.1)" },
+          "66%": { transform: "translate(20px, 100px) scale(0.9)" },
+        },
+      },
       backgroundImage: {
         "main-pattern": "url('/Swirl.png')",
       },

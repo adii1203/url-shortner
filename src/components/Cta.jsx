@@ -1,46 +1,41 @@
-import { useState } from "react";
-import Input from "./Input";
-
 const Cta = () => {
-  const [pasteFromClipboard, setPasteFromClipboard] = useState(true);
-
-  const handleToggle = () => {
-    setPasteFromClipboard(!pasteFromClipboard);
-  };
   return (
     <div>
-      <div className="text-white font-Outfit mt-14">
-        <p
-          className="text-4xl sm:text-5xl lg:text-6xl text-center font-600"
-          style={{
-            background: "#121FCF",
-            WebkitTextFillColor: "transparent",
-            WebkitBackgroundClip: "text",
-            backgroundImage:
-              "radial-gradient(circle farthest-corner at center center,#CF1512 0%, #121FCF 80%)",
-          }}>
-          {"Shorten Your Loooong Links :)"}
-        </p>
-        <p className="text-sm text-center font-comfortaa mt-4 text-[#C9CED6] w-[18rem] sm:w-[24rem] mx-auto">
-          Linkly is an efficient and easy-to-use URL shortening service that
-          streamlines your online experience.
-        </p>
-      </div>
-      <Input pasteFromClipboard={pasteFromClipboard} />
-      <div className="flex justify-center gap-2 items-center mt-4">
-        <div
-          onClick={handleToggle}
-          className="w-10 relative h-5 flex items-center rounded-full bg-[#181E29] outline outline-[#353C4A] outline-[2px] cursor-pointer">
-          <div
-            className={
-              pasteFromClipboard
-                ? `bg-[#144EE3] absolute left-1 translate-x-full transition-transform w-4 h-4 rounded-full shadow-md`
-                : `bg-white absolute left-1 transition-transform w-4 h-4 rounded-full shadow-md`
-            }></div>
+      <div className="flex flex-col gap-4 mt-16">
+        <div className="relative w-fit mx-auto group">
+          <div className="absolute group-hover:opacity-100 transition duration-200 blur to-[#8338EC] -inset-0.5 opacity-60 bg-gradient-to-r from-[#3A86FF] rounded-md"></div>
+          <div className="relative font-comfortaa text-center text-black text-[14px] font-semibold leading-none mx-auto bg-[#F9F4F5] px-4 py-1 rounded-md">
+            short share track
+          </div>
         </div>
-        <p className="text-[#C9CED6] text-sm font-500">
-          Auto Paste from Clipboard
-        </p>
+        <div className="flex flex-col gap-4">
+          <h1 className="text-5xl font-500 font-Outfit text-center max-w-3xl mx-auto">
+            Elevate your online{" "}
+            <span
+              style={{
+                WebkitTextFillColor: "transparent",
+                WebkitBackgroundClip: "text",
+              }}
+              className="bg-gradient-to-r from-[#FFBE0B] to-[#FF006E]">
+              presence
+            </span>{" "}
+            with oue link shortening{" "}
+            <span
+              style={{
+                WebkitTextFillColor: "transparent",
+                WebkitBackgroundClip: "text",
+              }}
+              className="bg-gradient-to-r from-[#3A86FF] to-[#8338EC]">
+              wizard.
+            </span>
+          </h1>
+          <h2 className="text-gray-600 text-center mx-auto max-w-2xl text-sm font-700 font-comfortaa">
+            {" "}
+            Unleash the Power of Concise URLs. Elevate your link-sharing
+            experience with our user-friendly web app for shortening URLs.
+            Simplify, Share, and Track with LinkSwift!
+          </h2>
+        </div>
       </div>
     </div>
   );
