@@ -2,7 +2,6 @@ import Container from "../components/Container";
 import Cta from "../components/Cta";
 import Header from "../components/Header";
 import AllLinks from "../components/AllLinks";
-import { useSelector } from "react-redux";
 const Trial = () => {
   return (
     <div className="overflow-hidden bg-gradient w-full relative min-h-screen bg-[#F8F9FA]">
