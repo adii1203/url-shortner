@@ -35,7 +35,7 @@ const Input = () => {
             placeholder="Enter the link here"
           />
         </div>
-        <button onClick={shortLink} className="">
+        <button className="">
           <svg
             width="32px"
             height="32px"
