@@ -1,3 +1,4 @@
+import Input from "./Input";
 const Cta = () => {
   return (
     <div>
@@ -37,6 +38,7 @@ const Cta = () => {
           </h2>
         </div>
       </div>
+      <Input />
     </div>
   );
 };

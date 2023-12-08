@@ -1,43 +1,78 @@
-import { ChevronRight, Link } from "lucide-react";
-import { useEffect, useState } from "react";
+import { Link2 } from "lucide-react";
+import { useState } from "react";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addLink } from "../features/linkSclice";
 
-const Input = ({ pasteFromClipboard }) => {
-  const [value, setValue] = useState("");
+const Input = () => {
+  const dispatch = useDispatch();
+  const [link, setLink] = useState("");
 
-  useEffect(() => {
-    const clip = async () => {
-      try {
-        const clipText = await navigator.clipboard.readText();
-        const pattern =
-          /(https:\/\/www.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?\/[a-zA-Z0-9]{2,}|((https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,})(\.[a-zA-Z]{2,})/;
-        // setValue(pattern.test(clipText) ? clipText : "");
-        if (pattern.test(clipText) && pasteFromClipboard) {
-          setValue(clipText);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    clip();
-  }, []);
+  const shortLink = async () => {
+    if (link === "") return;
+    try {
+      const res = await axios.post("http://localhost:5000/api/shortLink", {
+        url: link,
+      });
+      dispatch(addLink(res.data.data));
+      console.log(res.data.data);
+      //
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
-      <div className="grid grid-cols-[1fr_32px] place-content-center sm:grid-cols-[1fr_160px] sm:w-[70%] lg:w-[50%] gap-2 bg-[#181E29] mx-auto h-[2.6rem] rounded-full pr-1 py-2  pl-4 mt-14 outline-[#353C4A] outline">
-        <div className="flex text-[#C9CED6] items-center gap-4">
-          <Link className="text-[#C9CED6] w-4" />
+      <div className=" relative z-10 grid grid-cols-[1fr_auto] px-4 place-content-center max-w-[32rem] gap-2 bg-[#F9F4F5] mx-auto h-[2.6rem] rounded-md mt-14 outline-[1px] outline-gray-600 outline">
+        <div className="flex text-gray-600 items-center gap-4">
+          <Link2 className="text-black w-5" />
           <input
             type="text"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
+            value={link}
+            onChange={(e) => setLink(e.target.value)}
             className="bg-transparent outline-none w-full"
             placeholder="Enter the link here"
           />
         </div>
-        <button className="hidden sm:block px-3 h-8 capitalize bg-[#144EE3] rounded-[48px] text-center outline-[#144EE3] text-white">
-          Shorten now
-        </button>
-        <button className="sm:hidden w-8 h-8 grid place-content-center bg-[#144EE3] rounded-full text-center outline-[#144EE3] text-white">
-          <ChevronRight />
+        <button onClick={shortLink} className="">
+          <svg
+            width="32px"
+            height="32px"
+            viewBox="0 0 48 48"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            stroke="#ffffff">
+            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              stroke="#CCCCCC"
+              strokeWidth="0.8640000000000001"></g>
+            <g id="SVGRepo_iconCarrier">
+              {" "}
+              <path
+                d="M44 44V4H24V20H4V44H44Z"
+                fill="#000000"
+                stroke="#000000"
+                strokeWidth="0.72"
+                strokeLinecap="round"
+                strokeLinejoin="round"></path>{" "}
+              <path
+                d="M21 28L17 32L21 36"
+                stroke="white"
+                strokeWidth="0.72"
+                strokeLinecap="round"
+                strokeLinejoin="round"></path>{" "}
+              <path
+                d="M34 23V32H17"
+                stroke="white"
+                strokeWidth="0.72"
+                strokeLinecap="round"
+                strokeLinejoin="round"></path>{" "}
+            </g>
+          </svg>
         </button>
       </div>
     </div>
