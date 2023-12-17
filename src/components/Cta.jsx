@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Input from "./Input";
 const Cta = () => {
   return (
@@ -36,6 +37,18 @@ const Cta = () => {
             experience with our user-friendly web app for shortening URLs.
             Simplify, Share, and Track with LinkSwift!
           </h2>
+        </div>
+        <div className="relative z-10 flex items-center justify-center gap-4">
+          <Link
+            to={"/login"}
+            className="bg-[#100b00] text-white font-Outfit px-6 py-1 rounded-full hover:bg-white/80 hover:text-black hover:outline outline-[1px] transition-all duration-200">
+            log in
+          </Link>
+          <Link
+            to={"/register"}
+            className="bg-[#89fc00] text-black font-Outfit px-8 py-1 rounded-full hover:bg-white hover:text-black outline outline-black  outline-[1px] transition-all duration-200">
+            get started
+          </Link>
         </div>
       </div>
       <Input />
