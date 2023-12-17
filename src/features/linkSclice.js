@@ -3,10 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   links: [
     {
-      route: "H38jds",
-      destinationUrl: "https://www.google.com",
+      key: "H38jds",
+      originUrl: "https://www.google.com",
       clicks: 0,
       isActive: true,
+      icon: "",
+      image: "",
+      title: "",
+      description: "",
     },
   ],
 };
