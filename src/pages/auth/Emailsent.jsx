@@ -1,6 +1,6 @@
 import emailImg from "../../assets/email.png";
 import { useSearchParams } from "react-router-dom";
-const Emailsend = () => {
+const Emailsent = () => {
   const [searchParams, _] = useSearchParams();
 
   return (
@@ -24,4 +24,4 @@ const Emailsend = () => {
   );
 };
 
-export default Emailsend;
+export default Emailsent;
