@@ -1,9 +1,9 @@
-import Nav from "../components/Nav";
+import Nav from "../components/dashboard/Nav";
 import Container from "../components/Container";
-import Dashboard from "../components/Dashboard";
+import Dashboard from "../components/dashboard/Dashboard";
 const Home = () => {
   return (
-    <div className="bg-[#f9fafb] h-screen  mx-auto ">
+    <div className="bg-[#f9fafb] min-h-screen  mx-auto ">
       <Container>
         <Nav />
         <div className="mt-5 ">
