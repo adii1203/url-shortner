@@ -1,13 +1,17 @@
 import Nav from "../components/Nav";
-import Dashboard from "../components/Dashboard";
 import Container from "../components/Container";
-export const Home = () => {
+import Dashboard from "../components/Dashboard";
+const Home = () => {
   return (
-    <div>
+    <div className="bg-[#f9fafb] h-screen  mx-auto ">
       <Container>
         <Nav />
-        <Dashboard />
+        <div className="mt-5 ">
+          <Dashboard />
+        </div>
       </Container>
     </div>
   );
 };
+
+export default Home;
