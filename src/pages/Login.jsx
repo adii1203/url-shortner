@@ -1,13 +1,43 @@
-// import { useEffect } from "react";
 import { Link } from "react-router-dom";
-// import { useLocation } from "react-router-dom";
-
+import { useState } from "react";
+import axios from "axios";
+import { Loader } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { login } from "../features/authSlice";
+import { useNavigate } from "react-router-dom";
 export const Login = () => {
-  // const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
-  // useEffect(() => {
-  //   console.log(location);
-  // }, []);
+  const handelSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      setLoading(true);
+      const res = await axios.post(
+        "http://localhost:5000/api/v1/user/login",
+        formData
+      );
+      dispatch(login(res.data));
+      navigate("/home");
+      if (error) {
+        setError(false);
+      }
+    } catch (error) {
+      if (error.response.status === 400) {
+        setError(true);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="h-screen relative grid place-content-center bg-[#eff1ed]">
       <div className="bg-white font-Outfit w-[20rem] flex flex-col gap-6 px-6 py-5 outline outline-1 outline-[#100b00] rounded-sm">
@@ -20,20 +50,37 @@ export const Login = () => {
             </Link>
           </p>
         </div>
-        <form className="flex flex-col gap-4">
+        <form onSubmit={handelSubmit} className="flex flex-col gap-4">
           <div className="w-full">
             <label htmlFor="email" className="hidden"></label>
             <input
-              className="w-full border border-black/40 rounded-[4px] px-2 py-1 "
+              className={
+                error
+                  ? "border border-red-500 w-full rounded-[4px] px-2 py-1"
+                  : "w-full border border-black/40 rounded-[4px] px-2 py-1"
+              }
               type="email"
               id="email"
+              required
               placeholder="Email"
+              value={formData.email}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
             />
           </div>
           <div>
             <label htmlFor="password"></label>
             <input
-              className="w-full border border-black/40 rounded-[4px] px-2 py-1 "
+              value={formData.password}
+              onChange={(e) =>
+                setFormData({ ...formData, password: e.target.value })
+              }
+              className={
+                error
+                  ? "w-full border border-red-500 rounded-[4px] px-2 py-1 "
+                  : "w-full border border-black/40 rounded-[4px] px-2 py-1 "
+              }
               type="password"
               id="password"
               placeholder="Password"
@@ -42,9 +89,27 @@ export const Login = () => {
               forgot password?
               <Link className="text-black font-bold"> reset</Link>
             </p>
+            {
+              <p
+                className={
+                  error ? "text-sm text-red-500" : "hidden text-sm text-red-500"
+                }>
+                Invalide credentials
+              </p>
+            }
           </div>
-          <button className="w-full bg-[#100b00] py-1 rounded text-white capitalize font-semibold hover:bg-[#100b00]/90 transition-colors ">
-            log in
+          <button
+            disabled={loading}
+            className={
+              loading
+                ? "w-full bg-[#fff] disabled:cursor-not-allowed outline outline-1 outline-black  text-center py-1 rounded text-white capitalize font-semibold"
+                : "w-full bg-[#100b00] text-center py-1 rounded text-white capitalize font-semibold hover:bg-[#100b00]/90 transition-colors"
+            }>
+            {loading ? (
+              <Loader className="mx-auto text-black animate-spin" />
+            ) : (
+              "log in"
+            )}
           </button>
         </form>
 
