@@ -1,18 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  links: [
-    {
-      key: "H38jds",
-      originUrl: "https://www.google.com",
-      clicks: 0,
-      isActive: true,
-      icon: "",
-      image: "",
-      title: "",
-      description: "",
-    },
-  ],
+  links: null,
 };
 
 export const linkSlice = createSlice({
@@ -20,7 +9,7 @@ export const linkSlice = createSlice({
   initialState,
   reducers: {
     addLink: (state, payload) => {
-      state.links.push(payload.payload);
+      state.links = payload.payload;
     },
   },
 });
