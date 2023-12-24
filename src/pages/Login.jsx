@@ -22,7 +22,10 @@ export const Login = () => {
       setLoading(true);
       const res = await axios.post(
         "http://localhost:5000/api/v1/user/login",
-        formData
+        formData,
+        {
+          withCredentials: true,
+        }
       );
       dispatch(login(res.data));
       navigate("/home");
