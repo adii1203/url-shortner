@@ -42,11 +42,11 @@ const Home = () => {
         <Nav user={user} />
         <div className="mt-5 ">
           {loading ? (
-            [...Array(3).keys()].map(() => {
+            [...Array(3).keys()].map((_, i) => {
               return (
-                <>
+                <div key={i}>
                   <Loading />
-                </>
+                </div>
               );
             })
           ) : (

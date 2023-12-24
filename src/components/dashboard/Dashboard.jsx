@@ -9,8 +9,8 @@ const Dashboard = ({ links }) => {
         <SearchBtn />
         <ShortBtn />
       </div>
-      {links.map((link, index) => {
-        return <Links key={index} link={link} />;
+      {links.map((link) => {
+        return <Links key={link._id} link={link} />;
       })}
     </div>
   );
