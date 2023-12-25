@@ -1,9 +1,6 @@
 import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
-import useAuth from "../hooks/useAuth";
-
-const PublicRoutes = () => {
-  const { isLoading } = useAuth();
+const PublicRoutes = ({ isLoading }) => {
   const { status } = useSelector((state) => state.user);
   return (
     <>
