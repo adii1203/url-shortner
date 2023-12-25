@@ -8,8 +8,11 @@ import VerifyEmail from "./pages/auth/VerifyEmail";
 import Home from "./pages/Home";
 import SecureRoute from "./components/SecureRoute";
 import PublicRoutes from "./components/PublicRoutes";
+import useAuth from "./hooks/useAuth";
+import { Toaster } from "react-hot-toast";
 
 function App() {
+  const { isLoading } = useAuth();
   return (
     <>
       <BrowserRouter>
@@ -18,13 +21,13 @@ function App() {
 
           {/* SecureRoute : only accessable after login */}
 
-          <Route path="/" element={<SecureRoute />}>
+          <Route path="/" element={<SecureRoute isLoading={isLoading} />}>
             <Route path="/" element={<Home />} />
           </Route>
 
           {/* PublicRoutes : only accessable without login */}
 
-          <Route path="/" element={<PublicRoutes />}>
+          <Route path="/" element={<PublicRoutes isLoading={isLoading} />}>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/user/auth" element={<Auth />}>
@@ -34,6 +37,16 @@ function App() {
             </Route>
           </Route>
         </Routes>
+
+        <Toaster
+          toastOptions={{
+            style: {
+              color: "#363636",
+              background: "#fff",
+              textTransform: "capitalize",
+            },
+          }}
+        />
       </BrowserRouter>
     </>
   );
