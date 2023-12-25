@@ -5,6 +5,7 @@ import { Loader } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { login } from "../features/authSlice";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 export const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -17,6 +18,9 @@ export const Login = () => {
 
   const handelSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.email || !formData.password) {
+      return toast.error("please fill all the fields");
+    }
 
     try {
       setLoading(true);
@@ -28,11 +32,14 @@ export const Login = () => {
         }
       );
       dispatch(login(res.data));
+      toast.success("success");
       navigate("/home");
       if (error) {
         setError(false);
       }
     } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
       if (error.response.status === 400) {
         setError(true);
       }
