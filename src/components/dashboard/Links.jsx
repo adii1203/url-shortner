@@ -22,7 +22,7 @@ const Links = ({ link }) => {
               target="_blank"
               rel="noreferrer"
               className=" font-comfortaa text-sm underline">
-              {link.originUrl.length > 35
+              {link.originUrl?.length > 35
                 ? link.originUrl.slice(0, 35) + "..."
                 : link.originUrl}
             </a>
