@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../features/authSlice";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import Button from "../components/ui/Button";
 export const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -38,8 +39,7 @@ export const Login = () => {
         setError(false);
       }
     } catch (error) {
-      console.log(error);
-      toast.error(error.response.data.message);
+      toast.error(error?.response?.data?.message || error.message);
       if (error.response.status === 400) {
         setError(true);
       }
@@ -108,23 +108,23 @@ export const Login = () => {
               </p>
             }
           </div>
-          <button
+          <Button
             disabled={loading}
-            className={
-              loading
-                ? "w-full bg-[#fff] disabled:cursor-not-allowed outline outline-1 outline-black  text-center py-1 rounded text-white capitalize font-semibold"
-                : "w-full bg-[#100b00] text-center py-1 rounded text-white capitalize font-semibold hover:bg-[#100b00]/90 transition-colors"
-            }>
+            loading={loading}
+            variant={"primary"}
+            className={"w-full transition-colors duration-300"}>
             {loading ? (
               <Loader className="mx-auto text-black animate-spin" />
             ) : (
               "log in"
             )}
-          </button>
+          </Button>
         </form>
 
         <div className="">
-          <button className="w-full group flex items-center justify-center gap-2 bg-white py-1 rounded text-[#100b00] hover:bg-[#100b00] hover:text-white outline outline-[1px] transition-all duration-300">
+          <Button
+            variant={"secondary"}
+            className="w-full group flex items-center justify-center gap-2 text-[#100b00] hover:bg-[#100b00] hover:text-white outline outline-[1px] transition-colors duration-300">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20px"
@@ -138,7 +138,7 @@ export const Login = () => {
               />
             </svg>
             continue with google
-          </button>
+          </Button>
         </div>
         <div className="text-sm">
           <p className="text-gray-400 text-center">

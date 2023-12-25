@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import Input from "./Input";
+import Button from "./ui/Button";
+
 const Cta = () => {
   return (
     <div>
@@ -39,16 +41,22 @@ const Cta = () => {
           </h2>
         </div>
         <div className="relative z-10 flex items-center justify-center gap-4">
-          <Link
-            to={"/login"}
-            className="bg-[#100b00] text-white font-Outfit px-6 py-1 rounded-full hover:bg-white/80 hover:text-black hover:outline outline-[1px] transition-all duration-200">
-            log in
-          </Link>
-          <Link
-            to={"/register"}
-            className="bg-[#89fc00] text-black font-Outfit px-8 py-1 rounded-full hover:bg-white hover:text-black outline outline-black  outline-[1px] transition-all duration-200">
-            get started
-          </Link>
+          <Button
+            variant="primary"
+            className={"w-40 font-Outfit transition-colors duration-300"}>
+            <Link className="w-full h-full" to={"/login"}>
+              login
+            </Link>
+          </Button>
+          <Button
+            variant={"secondary"}
+            className={
+              "w-25 rounded-full border border-black hover:bg-white hover:rounded-md "
+            }>
+            <Link className="w-full h-full" to={"/register"}>
+              get started
+            </Link>
+          </Button>
         </div>
       </div>
       <Input />

@@ -3,8 +3,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import Button from "../components/ui/Button";
+import { Loader } from "lucide-react";
 const Register = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [userDetails, setUserDetails] = useState({
     name: "",
     email: "",
@@ -34,7 +37,9 @@ const Register = () => {
         );
       }
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error?.response?.data?.message || error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -90,13 +95,23 @@ const Register = () => {
               }
             />
           </div>
-          <button className="w-full bg-[#100b00] py-1 rounded text-white capitalize font-semibold hover:bg-[#100b00]/90 transition-colors ">
-            sign in
-          </button>
+          <Button
+            disabled={loading}
+            loading={loading}
+            variant={"primary"}
+            className={"w-full transition-colors duration-300"}>
+            {loading ? (
+              <Loader className="mx-auto text-black animate-spin" />
+            ) : (
+              "sign up"
+            )}
+          </Button>
         </form>
 
         <div className="">
-          <button className="w-full group flex items-center justify-center gap-2 bg-white py-1 rounded text-[#100b00] hover:bg-[#100b00] hover:text-white outline outline-[1px] transition-all duration-300">
+          <Button
+            variant={"secondary"}
+            className="w-full group flex items-center justify-center gap-2 text-[#100b00] hover:bg-[#100b00] hover:text-white outline outline-[1px] transition-colors duration-300">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20px"
@@ -110,7 +125,7 @@ const Register = () => {
               />
             </svg>
             continue with google
-          </button>
+          </Button>
         </div>
         <div className="text-sm">
           <p className="text-gray-400 text-center">
