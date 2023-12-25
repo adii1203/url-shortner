@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 const Register = () => {
   const navigate = useNavigate();
   const [userDetails, setUserDetails] = useState({
@@ -12,6 +13,9 @@ const Register = () => {
 
   const handelSubmit = (e) => {
     e.preventDefault();
+    if (!userDetails.name || !userDetails.email || !userDetails.password) {
+      return toast.error("Please fill all the fields");
+    }
     registerUser();
   };
 
@@ -24,14 +28,13 @@ const Register = () => {
         }
       );
       if (res.status === 201) {
-        console.log(res.data.data.user._id);
         navigate(
           `/user/auth/verify/${res.data.data.user._id}?email=${res.data.data.user.email}`,
           { replace: true }
         );
       }
     } catch (error) {
-      console.log(error);
+      toast.error(error.response.data.message);
     }
   };
 
