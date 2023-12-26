@@ -1,5 +1,6 @@
 import emailImg from "../../assets/email.png";
 import { useSearchParams } from "react-router-dom";
+import Button from "../../components/ui/Button";
 const Emailsent = () => {
   const [searchParams, _] = useSearchParams();
 
@@ -15,9 +16,13 @@ const Emailsent = () => {
           <p>click the link in the email to verify your account.</p>
         </div>
         <div>
-          <button className="font-Outfit px-4 py-2 rounded-full bg-[#100b00] text-white hover:bg-white hover:text-black hover:outline outline-1 transition-colors duration-300">
+          <Button
+            variant={"primary"}
+            className={
+              "w-full transition-colors duration-300 font-Outfit tracking-wider"
+            }>
             resend email
-          </button>
+          </Button>
         </div>
       </div>
     </div>

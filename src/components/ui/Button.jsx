@@ -35,7 +35,7 @@ const Button = ({
       {...props}
       disabled={loading}
       className={cn(buttonVariants({ size, variant, className }), {
-        "bg-white outline outline-1 outline-black": loading,
+        "bg-white outline outline-1 outline-black text-black": loading,
       })}
     />
   );
