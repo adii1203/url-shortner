@@ -6,11 +6,6 @@ import CreateLink from "../CreatLink";
 import Button from "../ui/Button";
 const Dashboard = ({ links }) => {
   const [isCreateLinkModelOpen, setIsCreateLinkModelOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  const createLink = () => {
-    console.log("create link");
-  };
 
   return (
     <div className=" h-screen">
@@ -29,11 +24,7 @@ const Dashboard = ({ links }) => {
         return <Links key={link._id} link={link} />;
       })}
       {isCreateLinkModelOpen && (
-        <CreateLink
-          loading={loading}
-          createLink={createLink}
-          setIsCreateLinkModelOpen={setIsCreateLinkModelOpen}
-        />
+        <CreateLink setIsCreateLinkModelOpen={setIsCreateLinkModelOpen} />
       )}
     </div>
   );
