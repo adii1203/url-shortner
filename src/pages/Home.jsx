@@ -4,7 +4,7 @@ import Dashboard from "../components/dashboard/Dashboard";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { addLink } from "../features/linkSclice";
+import { setAllLink } from "../features/linkSclice";
 import Loading from "../components/Loading";
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -26,7 +26,7 @@ const Home = () => {
             },
           }
         );
-        dispatch(addLink(res.data.data.links));
+        dispatch(setAllLink(res.data.data.links));
       } catch (error) {
         console.log(error);
       } finally {
