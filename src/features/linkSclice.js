@@ -14,8 +14,11 @@ export const linkSlice = createSlice({
     addOne: (state, payload) => {
       state.links.push(payload.payload);
     },
+    deleteOne: (state, payload) => {
+      state.links = state.links.filter((link) => link._id !== payload.payload);
+    },
   },
 });
 
-export const { setAllLink, addOne } = linkSlice.actions;
+export const { setAllLink, addOne, deleteOne } = linkSlice.actions;
 export default linkSlice.reducer;
