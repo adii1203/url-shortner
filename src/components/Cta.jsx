@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import Input from "./Input";
 import Button from "./ui/Button";
 
 const Cta = () => {
@@ -59,7 +58,6 @@ const Cta = () => {
           </Button>
         </div>
       </div>
-      <Input />
     </div>
   );
 };
