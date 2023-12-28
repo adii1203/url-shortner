@@ -33,9 +33,10 @@ const Button = ({
   return (
     <button
       {...props}
-      disabled={loading}
+      disabled={props.disabled || loading}
       className={cn(buttonVariants({ size, variant, className }), {
-        "bg-white outline outline-1 outline-black text-black": loading,
+        "cursor-not-allowed bg-gray-100 text-gray-400 border-black border hover:bg-":
+          props.disabled || loading,
       })}
     />
   );
