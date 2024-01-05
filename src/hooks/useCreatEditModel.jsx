@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
-import CreatEditLink from "../components/model/CreatEditLink";
+import CreatEditLink from "../components/models/creat-edit-model";
+import Popup from "reactjs-popup";
 
 export const useCreatEditModel = (props) => {
   const [showCreateEditModel, setShowCreateEditModel] = useState(false);
@@ -7,11 +8,19 @@ export const useCreatEditModel = (props) => {
   const CreatEditLinkModelCallback = useCallback(() => {
     return (
       <>
-        <CreatEditLink
-          props={props}
-          showCreateEditModel={showCreateEditModel}
-          setShowCreateEditModel={setShowCreateEditModel}
-        />
+        <Popup
+          className="bg-blur"
+          open={showCreateEditModel}
+          onClose={() => setShowCreateEditModel(false)}
+          modal
+          lockScroll={true}
+          closeOnDocumentClick>
+          <CreatEditLink
+            props={props}
+            showCreateEditModel={showCreateEditModel}
+            setShowCreateEditModel={setShowCreateEditModel}
+          />
+        </Popup>
       </>
     );
   }, [setShowCreateEditModel, showCreateEditModel, props]);

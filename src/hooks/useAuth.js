@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { login } from "../features/authSlice";
+import { refrechCredentials } from "../app/slices/auth.slice.js";
 
 const useAuth = () => {
   const dispatch = useDispatch();
@@ -16,7 +16,8 @@ const useAuth = () => {
           { withCredentials: true }
         );
         if (res.status === 200) {
-          dispatch(login(res.data));
+          console.log(res.data);
+          dispatch(refrechCredentials(res.data));
         }
       } catch (error) {
         console.log(error);
