@@ -1,59 +1,17 @@
-import Nav from "../components/dashboard/Nav";
-import Container from "../components/Container";
+import UserProfileHeader from "../components/dashboard/ProfileHeader";
 import Dashboard from "../components/dashboard/Dashboard";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { setAllLink } from "../features/linkSclice";
-import Loading from "../components/Loading";
+import { useSelector } from "react-redux";
+import { useGetLinksQuery } from "../app/api/linkSlice";
+
 const Home = () => {
-  const [loading, setLoading] = useState(true);
-  const dispatch = useDispatch();
-  const { user, authToken } = useSelector((state) => state.user);
-  const { links } = useSelector((state) => state.links);
-  useEffect(() => {
-    document.title = "Dashboard";
-  }, []);
+  const { userLinks } = useSelector((state) => state.links);
+  const { user } = useSelector((state) => state.auth);
 
-  useEffect(() => {
-    const getLinks = async () => {
-      try {
-        const res = await axios.get(
-          "http://localhost:5000/api/v1/link/fatchlinks",
-          {
-            headers: {
-              Authorization: `Bearer ${authToken}`,
-            },
-          }
-        );
-        dispatch(setAllLink(res.data.data.links));
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getLinks();
-  }, []);
-
+  const { data, isLoading } = useGetLinksQuery();
   return (
-    <div className="bg-[#f9fafb] min-h-screen  mx-auto ">
-      <Container>
-        <Nav user={user} />
-        <div className="mt-5 ">
-          {loading ? (
-            [...Array(3).keys()].map((_, i) => {
-              return (
-                <div key={i}>
-                  <Loading />
-                </div>
-              );
-            })
-          ) : (
-            <Dashboard links={links} />
-          )}
-        </div>
-      </Container>
+    <div className="bg-[#1a1a1a] min-h-screen mx-auto ">
+      <UserProfileHeader user={user} />
+      {isLoading ? <div>loading...</div> : <Dashboard data={data.data.links} />}
     </div>
   );
 };

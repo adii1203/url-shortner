@@ -1,45 +1,31 @@
-import { cva } from "class-variance-authority";
+/* eslint-disable react/prop-types */
 import { cn } from "../../utils/util";
+import { forwardRef } from "react";
 
-const buttonVariants = cva("inline-flex item-center justify-center w-full", {
-  variants: {
-    variant: {
-      primary:
-        "bg-[#100b00] hover:bg-white hover:text-[#100b00] hover:outline outline-1 capitalize rounded-md text-white px-3 py-2 ",
-      secondary:
-        "bg-white hover:bg-white/40 capitalize rounded-md text-black px-3 py-2 ",
-      outline:
-        "border bg-transparent border-[#100b00] hover:bg-[#100b00]/60 capitalize rounded-md text-[#100b00] px-3 py-2 ",
-      destructive:
-        "bg-red-500 hover:bg-red-500/80 capitalize rounded-md text-white px-3 py-2 ",
-    },
-    size: {
-      default: "w-20 py-2",
-    },
-  },
-  defaultVariants: {
-    variant: "primary",
-    size: "default",
-  },
-});
+const Button = forwardRef(
+  ({ children, className, varient, loading, disabled, ...rest }, ref) => {
+    return (
+      <button
+        ref={ref}
+        {...rest}
+        disabled={disabled || loading}
+        className={cn(
+          "flex items-center max-w-lg rounded px-2 transition-colors duration-200 font-500",
+          { "bg-[#444] cursor-not-allowed text-[#111]": disabled || loading },
+          {
+            "bg-[#1a1a1a] text-[#eee]": varient === "primary",
+            "bg-[#F44747]/80 hover:bg-[#F44747] text-[#eee]":
+              varient === "danger",
+            "w-10 h-10 rounded-full justify-center border": varient === "icon",
+          },
+          className
+        )}>
+        {children}
+      </button>
+    );
+  }
+);
 
-const Button = ({
-  className,
-  size,
-  variant = buttonVariants,
-  loading,
-  ...props
-}) => {
-  return (
-    <button
-      {...props}
-      disabled={props.disabled || loading}
-      className={cn(buttonVariants({ size, variant, className }), {
-        "cursor-not-allowed bg-gray-100 text-gray-400 border-black border hover:bg-":
-          props.disabled || loading,
-      })}
-    />
-  );
-};
+Button.displayName = "Button";
 
 export default Button;

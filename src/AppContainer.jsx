@@ -24,7 +24,7 @@ const AppContainer = () => {
   }, []);
 
   if (isLoading || isError) {
-    return <div>{isLoading ? <h1>Loading...</h1> : <h1>Error</h1>}</div>;
+    return <div>{isLoading ? null : <h1>Error</h1>}</div>;
   }
 
   return (

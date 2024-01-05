@@ -4,10 +4,6 @@ import Login from "./pages/Login";
 
 const privateRoutes = [
   {
-    path: "/",
-    element: <Trial />,
-  },
-  {
     path: "/home",
     element: <Home />,
   },
@@ -29,6 +25,10 @@ const publicRoutes = [
   {
     path: "/register",
     element: <div>register</div>,
+  },
+  {
+    path: "/",
+    element: <Trial />,
   },
 ];
 
