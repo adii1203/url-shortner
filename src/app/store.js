@@ -1,18 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { linkApi } from "./api/linkSlice.js";
-import authSlice from "./slices/auth.slice.js";
-import linkSlice from "./slices/link.slice.js";
+import authSlice from "../features/auth/authSlice.js";
+import { api } from "./api/apiSlice.js";
 
 const createStore = async () => {
   try {
     const store = configureStore({
       reducer: {
-        [linkApi.reducerPath]: linkApi.reducer,
+        [api.reducerPath]: api.reducer,
         auth: authSlice,
-        links: linkSlice,
       },
       middleware: (getDefaultMiddlewares) =>
-        getDefaultMiddlewares().concat(linkApi.middleware),
+        getDefaultMiddlewares().concat(api.middleware),
     });
 
     return store;
