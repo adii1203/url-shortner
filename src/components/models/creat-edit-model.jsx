@@ -1,18 +1,15 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import Button from "../ui/Button";
-import { Loader, X } from "lucide-react";
-import { useSelector, useDispatch } from "react-redux";
-// import { creatLink } from "../../app/actions/linkActions";
-import { useCreateLinkMutation } from "../../app/api/linkSlice";
+import { Loader } from "lucide-react";
+import { useCreateLinkMutation } from "../../features/links/linkApiSlice";
+import toast from "react-hot-toast";
 
 const CreatEditLink = ({
   props,
   showCreateEditModel,
   setShowCreateEditModel,
 }) => {
-  const dispatch = useDispatch();
-  const { isSaving } = useSelector((state) => state.links);
-  const [creatLink, { error, isLoading, isError }] = useCreateLinkMutation();
+  const [creatLink, { isLoading }] = useCreateLinkMutation();
 
   const [data, setData] = useState(
     props || {
@@ -25,7 +22,7 @@ const CreatEditLink = ({
       /(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?\/[a-zA-Z0-9]{2,}|((https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?)|(https:\/\/www\.|http:\/\/www\.|https:\/\/|http:\/\/)?[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}\.[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})?/g;
 
     if (
-      isSaving ||
+      isLoading ||
       !pattern.test(data.originUrl) ||
       (props && props?.originUrl === data.originUrl)
     ) {
@@ -33,15 +30,16 @@ const CreatEditLink = ({
     } else {
       return false;
     }
-  }, [data, props, isSaving]);
+  }, [data, props, isLoading]);
 
   const handelSave = async (e) => {
     e.preventDefault();
-    await creatLink({ originUrl: data.originUrl });
-
-    if (!isError) {
-      setData({ originUrl: "" });
+    try {
+      await creatLink(data).unwrap();
+      toast.success("Link Created Successfully");
       setShowCreateEditModel(false);
+    } catch (e) {
+      toast.error(e.data.message || e.message);
     }
   };
 
