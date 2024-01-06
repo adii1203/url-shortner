@@ -1,10 +1,9 @@
 import UserProfileHeader from "../components/dashboard/ProfileHeader";
 import Dashboard from "../components/dashboard/Dashboard";
 import { useSelector } from "react-redux";
-import { useGetLinksQuery } from "../app/api/linkSlice";
+import { useGetLinksQuery } from "../features/links/linkApiSlice";
 
 const Home = () => {
-  const { userLinks } = useSelector((state) => state.links);
   const { user } = useSelector((state) => state.auth);
 
   const { data, isLoading } = useGetLinksQuery();
