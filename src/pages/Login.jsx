@@ -1,15 +1,14 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Loader, Lock, User } from "lucide-react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
-import { loginAction } from "../app/actions/authActions";
 import Button from "../components/ui/Button";
+import { useLoginMutation } from "../features/auth/authApiSlice";
+import { refrechCredentials } from "../features/auth/authSlice";
 
 const Login = () => {
-  const { user, loading, loginError } = useSelector((state) => state.auth);
-  const navigate = useNavigate();
+  const [login, { isLoading }] = useLoginMutation();
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     email: "",
@@ -21,9 +20,12 @@ const Login = () => {
     if (!formData.email || !formData.password) {
       return toast.error("please fill all the fields");
     }
-    await dispatch(loginAction(formData));
-    if (user && !loading) {
-      navigate("/home");
+    try {
+      const res = await login(formData).unwrap();
+      dispatch(refrechCredentials(res.data));
+      toast.success("login success");
+    } catch (error) {
+      toast.error(error?.data?.message || error.message);
     }
   };
 
@@ -66,10 +68,9 @@ const Login = () => {
                 />
               </div>
               <Button
-                loading={loading}
                 variant="primary"
                 className="w-full justify-center bg-[#eee] p-2 font-Outfit font-semibold">
-                {loading ? <Loader className="animate-spin" /> : "log in"}
+                {isLoading ? <Loader className="animate-spin" /> : "log in"}
               </Button>
             </div>
             <Link to={"/"} className="text-sm font-comfortaa text-[#eee]">
@@ -87,7 +88,7 @@ const Login = () => {
             />
           </div> */}
           <p className="text-center text-[#eee]">
-            Don't have an account?{" "}
+            {"Don't have an account?"}
             <Link
               to={"/signup"}
               className="text-text-light dark:text-text-dark font-comfortaa font-semibold hover:underline">
