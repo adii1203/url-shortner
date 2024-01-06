@@ -1,14 +1,20 @@
+/* eslint-disable react/prop-types */
 import Button from "../ui/Button";
-import { useDeleteLinkMutation } from "../../app/api/linkSlice";
-import toast from "react-hot-toast";
+import { useDeleteLinkMutation } from "../../features/links/linkApiSlice";
 import { Loader } from "lucide-react";
+import toast from "react-hot-toast";
 
 const DeleteLinkModel = ({ props }) => {
-  const [deleteLink, { isLoading, isSuccess, isError, error }] =
-    useDeleteLinkMutation();
+  const { _id, icon } = props;
+  const [deleteLink, { isLoading }] = useDeleteLinkMutation();
 
   const handelDelete = async () => {
-    await deleteLink(props._id);
+    try {
+      await deleteLink(_id).unwrap();
+      toast.success("Link Deleted Successfully");
+    } catch (e) {
+      toast.error(e.data.message || e.message);
+    }
   };
 
   return (
@@ -18,7 +24,7 @@ const DeleteLinkModel = ({ props }) => {
           <img
             className="w-full h-full object-cover"
             src={
-              props?.icon ||
+              icon ||
               "https://pbs.twimg.com/profile_images/885868801232961537/b1F6H4KC_400x400.jpg"
             }
             alt=""
