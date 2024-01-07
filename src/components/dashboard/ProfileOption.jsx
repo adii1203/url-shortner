@@ -1,17 +1,35 @@
 import { LogOut, User } from "lucide-react";
 import Button from "../ui/Button";
-
+import { useLogoutMutation } from "../../features/auth/authApiSlice";
+import { logout } from "../../features/auth/authSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const ProfileActionsDropdown = () => {
+  const [logoutRequest] = useLogoutMutation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    const res = await logoutRequest().unwrap();
+    if (res.statusCode === 200) {
+      dispatch(logout());
+    }
+  };
+
+  const handelNavigate = (path) => {
+    navigate(path);
+  };
+
   const menuOptions = [
     {
       name: "Profile",
       icon: <User />,
-      action: null,
+      action: () => handelNavigate("/settings"),
     },
     {
       name: "Logout",
       icon: <LogOut />,
-      action: null,
+      action: handleLogout,
     },
   ];
 
@@ -24,6 +42,7 @@ const ProfileActionsDropdown = () => {
       {menuOptions.map((option) => {
         return (
           <Button
+            onClick={option.action}
             key={option.name}
             varient={option.name === "Logout" ? "danger" : "primary"}
             className={
