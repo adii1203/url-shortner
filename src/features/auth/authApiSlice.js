@@ -12,7 +12,14 @@ export const authApi = api.injectEndpoints({
     persistenceLogin: builder.query({
       query: () => "user/refresh-token",
     }),
+    logout: builder.mutation({
+      query: () => ({
+        url: "user/logout",
+        method: "POST",
+      }),
+    }),
   }),
 });
 
-export const { useLoginMutation, usePersistenceLoginQuery } = authApi;
+export const { useLoginMutation, usePersistenceLoginQuery, useLogoutMutation } =
+  authApi;
