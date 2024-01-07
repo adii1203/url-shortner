@@ -8,7 +8,7 @@ import Login from "./pages/Login";
 import useAuth from "./hooks/useAuth";
 
 function App() {
-  useAuth();
+  const { isLoading } = useAuth();
   const { user, authToken } = useSelector((state) => state.auth);
 
   return (
@@ -17,11 +17,23 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={user ? <Navigate to="/home" replace /> : <Trial />}
+            element={
+              isLoading ? null : user ? (
+                <Navigate to="/home" replace={true} />
+              ) : (
+                <Trial />
+              )
+            }
           />
           <Route
             path="/login"
-            element={user ? <Navigate to="/home" replace /> : <Login />}
+            element={
+              isLoading ? null : user ? (
+                <Navigate to="/home" replace={true} />
+              ) : (
+                <Login />
+              )
+            }
           />
           <Route element={<ProtectedRoute user={user} authToken={authToken} />}>
             {privateRoutes.map((route) => {
