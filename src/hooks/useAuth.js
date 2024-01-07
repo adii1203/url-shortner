@@ -1,32 +1,17 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { refrechCredentials } from "../features/auth/authSlice";
+import { usePersistenceLoginQuery } from "../features/auth/authApiSlice";
 
 const useAuth = () => {
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(true);
+  const { data, isLoading } = usePersistenceLoginQuery();
 
   useEffect(() => {
-    const checkLogin = async () => {
-      try {
-        const res = await axios.post(
-          "http://localhost:5000/api/v1/user/refresh-token",
-          {},
-          { withCredentials: true }
-        );
-        if (res.status === 200) {
-          console.log(res.data);
-          dispatch(refrechCredentials(res.data.data));
-        }
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    checkLogin();
-  }, [dispatch]);
+    if (data) {
+      dispatch(refrechCredentials(data?.data));
+    }
+  }, [data, dispatch]);
 
   return { isLoading };
 };

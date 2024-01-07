@@ -9,7 +9,10 @@ export const authApi = api.injectEndpoints({
         body: { ...cred },
       }),
     }),
+    persistenceLogin: builder.query({
+      query: () => "user/refresh-token",
+    }),
   }),
 });
 
-export const { useLoginMutation } = authApi;
+export const { useLoginMutation, usePersistenceLoginQuery } = authApi;
