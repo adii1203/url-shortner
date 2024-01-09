@@ -4,17 +4,20 @@ import Popup from "reactjs-popup";
 import Button from "./ui/Button";
 import { useCreatEditModel } from "../hooks/useCreatEditModel";
 import { useDeleteLinkModel } from "../hooks/useDeleteLinkModel";
+import { useQrCodeModel } from "../hooks/useQrCodeModel";
 
 const LinkCard = ({ link }) => {
   const { CreatEditLinkModelCallback, setShowCreateEditModel } =
     useCreatEditModel(link);
   const { DeleteLinkModelCallback, setShowDeleteLinkModel } =
     useDeleteLinkModel(link);
+  const { QrCodeModelCallback, setShowQrCodeModel } = useQrCodeModel(link);
 
   return (
     <>
       <CreatEditLinkModelCallback />
       <DeleteLinkModelCallback />
+      <QrCodeModelCallback />
       <div className="w-full relative mt-5 sm:w-[36rem] lg:w-[42rem] mx-auto ">
         <div className="bg-[#444] rounded-md px-2 py-3 shadow-md hover:scale-[1.01] transition-transform duration-200 flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -68,6 +71,7 @@ const LinkCard = ({ link }) => {
                     <span>edit</span>
                   </Button>
                   <Button
+                    onClick={() => setShowQrCodeModel(true)}
                     varient={"primary"}
                     className={
                       "w-full font-Outfit justify-start gap-3 py-1 bg-[#444]/20 hover:bg-[#444]/60 text-[#eee]"
