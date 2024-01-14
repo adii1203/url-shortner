@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import createStore from "./app/store.js";
 import App from "./App.jsx";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 const AppContainer = () => {
   const [store, setStore] = useState(null);
@@ -28,9 +29,11 @@ const AppContainer = () => {
   }
 
   return (
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <SpeedInsights>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </SpeedInsights>
   );
 };
 
