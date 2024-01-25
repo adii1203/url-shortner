@@ -1,50 +1,100 @@
-import { Github } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Loader, Lock, User } from "lucide-react";
+import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import Button from "../components/ui/Button";
-import { magic } from "../utils/magic";
+import { useLoginMutation } from "../features/auth/authApiSlice";
+import { refrechCredentials } from "../features/auth/authSlice";
 
 const Login = () => {
-  const handelGoogleLogin = async (provider) => {
+  const [login, { isLoading }] = useLoginMutation();
+  const dispatch = useDispatch();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handelSubmit = async (e) => {
+    e.preventDefault();
+    if (!formData.email || !formData.password) {
+      return toast.error("please fill all the fields");
+    }
     try {
-      await magic.oauth.loginWithRedirect({
-        provider: provider,
-        redirectURI: `${window.location.origin}/register`,
-      });
+      const res = await login(formData).unwrap();
+      dispatch(refrechCredentials(res.data));
+      toast.success("login success");
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.error(error?.data?.message || error.message);
     }
   };
 
   return (
     <div className="h-screen w-screen relative grid place-content-center  bg-[#111]  ">
       <div className="flex flex-col items-center w-full">
-        <div className="w-full sm:w-[22rem] flex flex-col gap-4">
-          <div className="w-full flex flex-col gap-4">
+        <div className="text-center text-[#eee]">
+          <h1 className="font-bold font-Outfit text-[4rem] md:text-[5rem] leading-[4rem] md:leading-[5rem] text-text-light dark:text-text-dark">
+            welcome
+          </h1>
+          <p className=" font-comfortaa font-semibold text-sub-light dark:text-sub-dark ">
+            we are glade to see you back{" "}
+          </p>
+        </div>
+        <div className="w-full flex flex-col gap-4">
+          <form onSubmit={handelSubmit}>
+            <div className="flex flex-col items-center gap-4 mt-4 justify-center w-full sm:w-[22rem]">
+              <div className="w-full rounded-md bg-[#1a1a1a] flex items-center px-2 gap-2 ">
+                <User color="#eee" />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  className=" w-full py-3 outline-none bg-transparent font-comfortaa text-sm text-[#eee] font-bold"
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
+                />
+              </div>
+              <div className="w-full rounded-md bg-[#1a1a1a] flex items-center px-2 gap-2 ">
+                <Lock color="#eee" />
+                <input
+                  type="password"
+                  placeholder="password"
+                  className=" w-full py-3 outline-none bg-transparent font-comfortaa text-sm text-[#eee] font-bold"
+                  value={formData.password}
+                  onChange={(e) =>
+                    setFormData({ ...formData, password: e.target.value })
+                  }
+                />
+              </div>
+              <Button
+                variant="primary"
+                className="w-full justify-center bg-[#eee] p-2 font-Outfit font-semibold">
+                {isLoading ? <Loader className="animate-spin" /> : "log in"}
+              </Button>
+            </div>
+            <Link to={"/"} className="text-sm font-comfortaa text-[#eee]">
+              forgot password.
+            </Link>
+          </form>
+
+          {/* <div className="w-full">
             <Button
-              onClick={() => handelGoogleLogin("google")}
-              varient={"primary"}
+              variant="secondary"
+              text={"log in with google"}
               className={
-                "w-full justify-center gap-3 py-2 hover:bg-[#eee] hover:text-[#111] capitalize"
-              }>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 488 512"
-                fill="currentColor"
-                className="h-5 w-5">
-                <path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path>
-              </svg>
-              continue with google
-            </Button>
-            <Button
-              onClick={() => handelGoogleLogin("github")}
-              varient={"primary"}
-              className={
-                "w-full justify-center gap-3 py-2 hover:bg-[#eee] hover:text-[#111] capitalize"
-              }>
-              <Github />
-              continue with github
-            </Button>
-          </div>
+                "bg-sub-alt-light dark:bg-sub-alt-dark hover:bg-accent-light dark:hover:bg-accent-light text-text-light dark:text-text-dark hover:text-sub-alt-light"
+              }
+            />
+          </div> */}
+          <p className="text-center text-[#eee]">
+            {"Don't have an account?"}
+            <Link
+              to={"/signup"}
+              className="text-text-light dark:text-text-dark font-comfortaa font-semibold hover:underline">
+              sign up
+            </Link>
+          </p>
         </div>
       </div>
     </div>
