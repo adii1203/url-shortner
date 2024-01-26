@@ -5,6 +5,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { useSelector } from "react-redux";
 import Trial from "./pages/Trial";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import useAuth from "./hooks/useAuth";
 
 function App() {
@@ -32,6 +33,16 @@ function App() {
                 <Navigate to="/home" replace={true} />
               ) : (
                 <Login />
+              )
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              isLoading ? null : user ? (
+                <Navigate to="/home" replace={true} />
+              ) : (
+                <Register />
               )
             }
           />
