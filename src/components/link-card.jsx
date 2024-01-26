@@ -26,7 +26,7 @@ const LinkCard = ({ link }) => {
             </div>
             <div className="font-Outfit">
               <a
-                href="https://openurl.me/af46Fg"
+                href={`https://openurl.me/${link.key}`}
                 target="_blank"
                 rel="noreferrer"
                 className="block text-[#eee] text-lg">
