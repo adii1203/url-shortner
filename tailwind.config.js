@@ -10,13 +10,13 @@ export default {
       keyframes: {
         blob: {
           "0%, 100%": { transform: "translate(0px, 0px) scale(1)" },
-          "33%": { transform: "translate(40px, -60px) scale(1.1)" },
-          "66%": { transform: "translate(-20px, 100px) scale(0.9)" },
+          "33%": { transform: "translate(20px, -30px) scale(1.1)" },
+          "66%": { transform: "translate(-10px, 50px) scale(0.9)" },
         },
         blob_2: {
           "0%, 100%": { transform: "translate(0px, 0px) scale(1)" },
-          "33%": { transform: "translate(-30px, 50px) scale(1.1)" },
-          "66%": { transform: "translate(20px, 100px) scale(0.9)" },
+          "33%": { transform: "translate(-20px, 30px) scale(1.1)" },
+          "66%": { transform: "translate(10px, 50px) scale(0.9)" },
         },
       },
       backgroundImage: {
