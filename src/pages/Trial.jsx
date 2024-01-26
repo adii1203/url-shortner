@@ -81,20 +81,22 @@ const Trial = () => {
             <div className="w-[18rem] sm:w-[30rem] relative mt-5 mx-auto rotate-3 translate-x-6 hover:rotate-0 transition-transform duration-200 ">
               <div className="bg-[#eee] rounded-md px-2 py-3 shadow-md flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 rounded-full overflow-hidden border border-black">
+                  <div className="w-10 rounded-full overflow-hidden">
                     <img
                       className="w-full"
-                      src={"https://robohash.org/2"}
+                      src={
+                        "https://github.githubassets.com/favicons/favicon.svg"
+                      }
                       alt=""
                     />
                   </div>
                   <div className="font-Outfit">
                     <a
-                      href={`https://openurl.me`}
+                      href={`https://openurl.me/a6b4b600`}
                       target="_blank"
                       rel="noreferrer"
                       className="block text-[#1d1d1d] text-lg">
-                      openurl.me/Ahg34
+                      openurl.me/a6b4b600
                     </a>
                   </div>
                 </div>
@@ -106,20 +108,20 @@ const Trial = () => {
             <div className="w-[18rem] sm:w-[30rem] relative mt-5 mx-auto -rotate-3 -translate-x-6 hover:rotate-0 transition-transform duration-200">
               <div className="bg-[#444] rounded-md px-2 py-3 shadow-md hover:scale-[1.01] transition-transform duration-200 flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 rounded-full overflow-hidden border">
+                  <div className="w-10 h-10 rounded-full overflow-hidden">
                     <img
                       className="w-full"
-                      src={"https://robohash.org/2"}
+                      src={"https://abs.twimg.com/favicons/twitter.3.ico"}
                       alt=""
                     />
                   </div>
                   <div className="font-Outfit">
                     <a
-                      href={`https://openurl.me`}
+                      href={`https://openurl.me/4e9601c5`}
                       target="_blank"
                       rel="noreferrer"
                       className="block text-[#eee] text-lg">
-                      openurl.me/Ahg34
+                      openurl.me/4e9601c5
                     </a>
                   </div>
                 </div>
@@ -131,45 +133,22 @@ const Trial = () => {
             <div className="w-[18rem] sm:w-[30rem] relative mt-5 mx-auto rotate-3 translate-x-12 hover:rotate-0 transition-transform duration-200">
               <div className="bg-[#444] rounded-md px-2 py-3 shadow-md hover:scale-[1.01] transition-transform duration-200 flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 rounded-full overflow-hidden border">
+                  <div className="w-10 rounded-full overflow-hidden">
                     <img
                       className="w-full"
-                      src={"https://robohash.org/2"}
+                      src={
+                        "	https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png"
+                      }
                       alt=""
                     />
                   </div>
                   <div className="font-Outfit">
                     <a
-                      href={`https://openurl.me`}
+                      href={`https://openurl.me/56512e43`}
                       target="_blank"
                       rel="noreferrer"
                       className="block text-[#eee] text-lg">
-                      openurl.me/Ahg34
-                    </a>
-                  </div>
-                </div>
-                <button className="w-4 grid place-content-center rounded-sm hover:bg-slate-500/20 transition-colors duration-200">
-                  <MoreVertical color="#eee" />
-                </button>
-              </div>
-            </div>
-            <div className="w-[18rem] sm:w-[30rem] relative mt-5 mx-auto -rotate-3 -translate-x-12 hover:rotate-0 transition-transform duration-200">
-              <div className="bg-[#444] rounded-md px-2 py-3 shadow-md hover:scale-[1.01] transition-transform duration-200 flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <div className="w-10 rounded-full overflow-hidden border">
-                    <img
-                      className="w-full"
-                      src={"https://robohash.org/2"}
-                      alt=""
-                    />
-                  </div>
-                  <div className="font-Outfit">
-                    <a
-                      href={`https://openurl.me`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="block text-[#eee] text-lg">
-                      openurl.me/Ahg34
+                      openurl.me/56512e43
                     </a>
                   </div>
                 </div>
