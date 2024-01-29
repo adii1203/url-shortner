@@ -14,6 +14,7 @@ const CreatEditLink = ({
   const [data, setData] = useState(
     props || {
       originUrl: "",
+      key: "",
     }
   );
 
@@ -24,7 +25,8 @@ const CreatEditLink = ({
     if (
       isLoading ||
       !pattern.test(data.originUrl) ||
-      (props && props?.originUrl === data.originUrl)
+      (props &&
+        Object.entries(props).every(([key, value]) => data[key] === value))
     ) {
       return true;
     } else {
@@ -68,12 +70,30 @@ const CreatEditLink = ({
               </label>
               <input
                 value={data.originUrl}
-                onChange={(e) => setData({ originUrl: e.target.value })}
+                onChange={(e) =>
+                  setData({ ...data, originUrl: e.target.value })
+                }
                 className="border-2 border-[#444] rounded px-2 py-2 text-[#1a1a1a] font-comfortaa font-bold"
                 type="text"
                 name=""
                 id=""
                 placeholder="Ex:- https://github.com"
+              />
+            </div>
+            <div className="flex flex-col w-[20rem] gap-1 mt-3">
+              <lable
+                htmlFor="key"
+                className="font-semibold capitalize font-Outfit text-[#444]">
+                key (optional)
+              </lable>
+              <input
+                value={data.key}
+                onChange={(e) => setData({ ...data, key: e.target.value })}
+                type="text"
+                name=""
+                id=""
+                placeholder="Ex:- github"
+                className="border-2 border-[#444] rounded px-2 py-2 text-[#1a1a1a] font-comfortaa font-bold"
               />
             </div>
             <Button
