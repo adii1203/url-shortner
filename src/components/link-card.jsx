@@ -53,7 +53,6 @@ const LinkCard = ({ link }) => {
                 "top right",
               ]}
               arrow={false}
-              on={["hover", "focus"]}
               trigger={
                 <button className="w-4 grid place-content-center rounded-sm hover:bg-slate-500/20 transition-colors duration-200">
                   <MoreVertical color="#eee" />
