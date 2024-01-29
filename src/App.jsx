@@ -7,6 +7,8 @@ import Trial from "./pages/Trial";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import useAuth from "./hooks/useAuth";
+import Emailsent from "./pages/Emailsent";
+import Emailverify from "./pages/Emailverify";
 
 function App() {
   const { isLoading } = useAuth();
@@ -46,6 +48,8 @@ function App() {
               )
             }
           />
+          <Route path="/emai_verification" element={<Emailsent />} />
+          <Route path="/auth/verify/:token" element={<Emailverify />} />
           <Route element={<ProtectedRoute user={user} authToken={authToken} />}>
             {privateRoutes.map((route) => {
               return (
