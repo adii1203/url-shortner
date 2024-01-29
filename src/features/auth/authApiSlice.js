@@ -12,6 +12,16 @@ export const authApi = api.injectEndpoints({
     persistenceLogin: builder.query({
       query: () => "user/refresh-token",
     }),
+    register: builder.mutation({
+      query: (data) => ({
+        url: "user/register",
+        method: "POST",
+        body: { ...data },
+      }),
+    }),
+    verifyEmail: builder.query({
+      query: (token) => `user/verify-email/${token}`,
+    }),
     logout: builder.mutation({
       query: () => ({
         url: "user/logout",
@@ -21,5 +31,10 @@ export const authApi = api.injectEndpoints({
   }),
 });
 
-export const { useLoginMutation, usePersistenceLoginQuery, useLogoutMutation } =
-  authApi;
+export const {
+  useLoginMutation,
+  usePersistenceLoginQuery,
+  useLogoutMutation,
+  useRegisterMutation,
+  useVerifyEmailQuery,
+} = authApi;
