@@ -8,9 +8,12 @@ const Trial = () => {
     <div className="w-full md:w-[80%] sm:w-[100%] mx-auto">
       <div className="p-4">
         <div className="flex items-center justify-between">
-          <Link className="w-16 h-16 block" to="/">
-            <img src={logo} alt="" />
-          </Link>
+          <div className="flex items-center">
+            <Link className="w-16 h-16 block" to="/">
+              <img src={logo} alt="" />
+            </Link>
+            <p className="font-Outfit text-3xl font-bold mb-6">openurl</p>
+          </div>
           <Button
             varient="primary"
             className={
@@ -47,7 +50,7 @@ const Trial = () => {
               {" "}
               Unleash the Power of Concise URLs. Elevate your link-sharing
               experience with our user-friendly web app for shortening URLs.
-              Simplify, Share, and Track with LinkSwift!
+              Simplify, Share, and Track with openurl!
             </h2>
             <div className="flex gap-3 items-center justify-center">
               <Button
@@ -92,11 +95,11 @@ const Trial = () => {
                   </div>
                   <div className="font-Outfit">
                     <a
-                      href={`https://openurl.me/a6b4b600`}
+                      href={`openurl.me/github`}
                       target="_blank"
                       rel="noreferrer"
                       className="block text-[#1d1d1d] text-lg">
-                      openurl.me/a6b4b600
+                      openurl.me/github
                     </a>
                   </div>
                 </div>
@@ -106,7 +109,7 @@ const Trial = () => {
               </div>
             </div>
             <div className="w-[18rem] sm:w-[30rem] relative mt-5 mx-auto -rotate-3 -translate-x-6 hover:rotate-0 transition-transform duration-200">
-              <div className="bg-[#444] rounded-md px-2 py-3 shadow-md hover:scale-[1.01] transition-transform duration-200 flex items-center justify-between">
+              <div className="bg-[#eee] rounded-md px-2 py-3 shadow-md hover:scale-[1.01] transition-transform duration-200 flex items-center justify-between">
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 rounded-full overflow-hidden">
                     <img
@@ -117,43 +120,43 @@ const Trial = () => {
                   </div>
                   <div className="font-Outfit">
                     <a
-                      href={`https://openurl.me/4e9601c5`}
+                      href={`https://openurl.me/x`}
                       target="_blank"
                       rel="noreferrer"
-                      className="block text-[#eee] text-lg">
-                      openurl.me/4e9601c5
+                      className="block text-[#1d1d1d]  text-lg">
+                      openurl.me/x
                     </a>
                   </div>
                 </div>
                 <button className="w-4 grid place-content-center rounded-sm hover:bg-slate-500/20 transition-colors duration-200">
-                  <MoreVertical color="#eee" />
+                  <MoreVertical color="#111" />
                 </button>
               </div>
             </div>
             <div className="w-[18rem] sm:w-[30rem] relative mt-5 mx-auto rotate-3 translate-x-12 hover:rotate-0 transition-transform duration-200">
-              <div className="bg-[#444] rounded-md px-2 py-3 shadow-md hover:scale-[1.01] transition-transform duration-200 flex items-center justify-between">
+              <div className="bg-[#eee] rounded-md px-2 py-3 shadow-md hover:scale-[1.01] transition-transform duration-200 flex items-center justify-between">
                 <div className="flex items-center gap-4">
                   <div className="w-10 rounded-full overflow-hidden">
                     <img
                       className="w-full"
                       src={
-                        "	https://static.cdninstagram.com/rsrc.php/v3/yI/r/VsNE-OHk_8a.png"
+                        "https://github.githubassets.com/favicons/favicon.svg"
                       }
                       alt=""
                     />
                   </div>
                   <div className="font-Outfit">
                     <a
-                      href={`https://openurl.me/56512e43`}
+                      href={`https://openurl.me/openurl-github`}
                       target="_blank"
                       rel="noreferrer"
-                      className="block text-[#eee] text-lg">
-                      openurl.me/56512e43
+                      className="block text-[#1d1d1d]  text-lg">
+                      openurl.me/openurl-github
                     </a>
                   </div>
                 </div>
                 <button className="w-4 grid place-content-center rounded-sm hover:bg-slate-500/20 transition-colors duration-200">
-                  <MoreVertical color="#eee" />
+                  <MoreVertical color="#111" />
                 </button>
               </div>
             </div>
